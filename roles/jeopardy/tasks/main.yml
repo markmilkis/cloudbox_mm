@@ -1,0 +1,50 @@
+#########################################################################
+# Title:            Community: File Browser                             #
+# Author(s):        MilkMaNY                                            #
+# URL:              https://github.com/Cloudbox/Community               #
+# Docker Image(s):  evanfuhr/docker-jeopardy                            #
+# --                                                                    #
+#         Part of the Cloudbox project: https://cloudbox.works          #
+#########################################################################
+#                   GNU General Public License v3.0                     #
+#########################################################################
+---
+# Just a change
+#- name: "Setting CloudFlare DNS Record"
+#  include_role:
+#    name: cloudflare-dns
+#  vars:
+#    record: filebrowser
+#  when: cloudflare_enabled
+
+- name: Stop and remove any existing container
+  docker_container:
+    name: jeopardy
+    state: absent
+
+- name: Create and start container
+  docker_container:
+    name: jeopardy
+    image: evanfuhr/docker-jeopardy:latest
+    pull: yes
+    env:
+      TZ: "{{ tz }}"
+      VIRTUAL_HOST: "jeopardy.{{ user.domain }}"
+      VIRTUAL_PORT: "3000"
+      LETSENCRYPT_HOST: "jeopardy.{{ user.domain }}"
+      LETSENCRYPT_EMAIL: "{{ user.email }}"
+#    volumes:
+#      - "/opt/filebrowser/filebrowser.db:/database.db"
+#      - "/opt/filebrowser/filebrowser.json:/.filebrowser.json"
+#      - "/mnt/unionfs:/srv"
+    labels:
+      "com.github.cloudbox.cloudbox_managed": "true"
+    user: "{{ uid }}:{{ gid }}"
+    networks:
+      - name: cloudbox
+        aliases:
+          - jeopardy
+    exposed_ports:
+      - 3000
+    restart_policy: unless-stopped
+    state: started
