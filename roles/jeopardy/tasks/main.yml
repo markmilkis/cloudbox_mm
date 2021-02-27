@@ -34,7 +34,7 @@
       VIRTUAL_PORT: "3000"
       LETSENCRYPT_HOST: "jeopardy.{{ user.domain }}"
       LETSENCRYPT_EMAIL: "{{ user.email }}"
-   volumes:
+    volumes:
 #      - "/opt/filebrowser/filebrowser.db:/database.db"
 #      - "/opt/filebrowser/filebrowser.json:/.filebrowser.json"
      - "/opt/jeopardy/games:/usr/src/app/games"
