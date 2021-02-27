@@ -2,7 +2,7 @@
 # Title:            Community: File Browser                             #
 # Author(s):        MilkMaNY                                            #
 # URL:              https://github.com/Cloudbox/Community               #
-# Docker Image(s):  evanfuhr/docker-jeopardy                            #
+# Docker Image(s):  markmilkis/jeopardy                                 #
 # --                                                                    #
 #         Part of the Cloudbox project: https://cloudbox.works          #
 #########################################################################
@@ -10,12 +10,12 @@
 #########################################################################
 ---
 # Just a change
-#- name: "Setting CloudFlare DNS Record"
-#  include_role:
-#    name: cloudflare-dns
-#  vars:
-#    record: filebrowser
-#  when: cloudflare_enabled
+- name: "Setting CloudFlare DNS Record"
+ include_role:
+   name: cloudflare-dns
+ vars:
+   record: jeopardy
+ when: cloudflare_enabled
 
 - name: Stop and remove any existing container
   docker_container:
