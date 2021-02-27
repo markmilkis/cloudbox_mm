@@ -11,7 +11,7 @@
 ---
 # Just a change
 - name: "Setting CloudFlare DNS Record"
-    include_role:
+  include_role:
     name: cloudflare-dns
   vars:
     record: jeopardy
