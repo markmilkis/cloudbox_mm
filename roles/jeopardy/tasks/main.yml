@@ -11,11 +11,11 @@
 ---
 # Just a change
 - name: "Setting CloudFlare DNS Record"
- include_role:
-   name: cloudflare-dns
- vars:
-   record: jeopardy
- when: cloudflare_enabled
+    include_role:
+    name: cloudflare-dns
+  vars:
+    record: jeopardy
+  when: cloudflare_enabled
 
 - name: Stop and remove any existing container
   docker_container:
