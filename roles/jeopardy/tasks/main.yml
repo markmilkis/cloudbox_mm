@@ -25,7 +25,8 @@
 - name: Create and start container
   docker_container:
     name: jeopardy
-    image: evanfuhr/docker-jeopardy:latest
+#     image: evanfuhr/docker-jeopardy:latest
+    image: markmilkis/jeopardy:latest
     pull: yes
     env:
       TZ: "{{ tz }}"
@@ -36,7 +37,7 @@
 #    volumes:
 #      - "/opt/filebrowser/filebrowser.db:/database.db"
 #      - "/opt/filebrowser/filebrowser.json:/.filebrowser.json"
-#      - "/mnt/unionfs:/srv"
+     - "/opt/jeopardy/games:/usr/src/app/games"
     labels:
       "com.github.cloudbox.cloudbox_managed": "true"
     user: "{{ uid }}:{{ gid }}"
