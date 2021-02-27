@@ -10,11 +10,11 @@
 #########################################################################
 ---
 # Just a change
-- name: "Setting CloudFlare DNS Record"
+- name: "Set DNS Record on CloudFlare"
   include_role:
     name: cloudflare-dns
   vars:
-    record: jeopardy
+    subdomain: jeopardy
   when: cloudflare_enabled
 
 - name: Stop and remove any existing container
