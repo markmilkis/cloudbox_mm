@@ -37,7 +37,7 @@
 #    volumes:
 #      - "/opt/filebrowser/filebrowser.db:/database.db"
 #      - "/opt/filebrowser/filebrowser.json:/.filebrowser.json"
-     - "/opt/jeopardy/games:/usr/src/app/games"
+      - "/opt/jeopardy/games:/usr/src/app/games"
     labels:
       "com.github.cloudbox.cloudbox_managed": "true"
     user: "{{ uid }}:{{ gid }}"
